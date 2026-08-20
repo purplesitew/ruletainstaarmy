@@ -1,0 +1,723 @@
+```html
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    >
+
+    <title>Ruleta</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+    <main class="app">
+
+
+        <!-- ==========================================
+             BOTÓN DE INSTALACIÓN
+             ========================================== -->
+
+        <button
+            class="boton-superior boton-instalar"
+            id="btnInstalar"
+        >
+            <img
+                src="instalar.png"
+                alt="Instalar PWA"
+            >
+        </button>
+
+
+        <!-- ==========================================
+             BOTÓN DE ADMINISTRADOR
+             ========================================== -->
+
+        <button
+            class="boton-superior boton-panel"
+            id="btnPanel"
+        >
+            <img
+                src="panel.png"
+                alt="Panel de administrador"
+            >
+        </button>
+
+
+        <!-- ==========================================
+             BOTÓN DE REDES SOCIALES
+             ========================================== -->
+
+        <button
+            class="boton-superior boton-redes"
+            id="btnRedes"
+        >
+            <img
+                src="redes.png"
+                alt="Redes sociales"
+            >
+        </button>
+
+
+        <!-- ==========================================
+             RULETA
+             ========================================== -->
+
+        <section class="zona-ruleta">
+
+            <div class="ruleta-contenedor">
+
+                <img
+                    src="ruleta.png"
+                    alt="Ruleta"
+                    class="ruleta"
+                    id="ruleta"
+                >
+
+                <img
+                    src="flecharuleta.png"
+                    alt="Indicador"
+                    class="flecha-ruleta"
+                >
+
+            </div>
+
+        </section>
+
+
+        <!-- ==========================================
+             BOTÓN PARA GIRAR
+             ========================================== -->
+
+        <div class="zona-giro">
+
+            <button
+                id="btnGirar"
+                class="btn-girar"
+                aria-disabled="true"
+            >
+                GIRAR RULETA
+            </button>
+
+        </div>
+
+
+        <!-- ==========================================
+             VENTANA DE REGISTRO
+             ========================================== -->
+
+        <div
+            class="modal-registro"
+            id="modalRegistro"
+        >
+
+            <div class="registro-contenido">
+
+                <button
+                    class="cerrar-registro"
+                    id="cerrarRegistro"
+                    type="button"
+                    aria-label="Cerrar"
+                >
+                    ×
+                </button>
+
+                <h2>💜REGÍSTRATE💜</h2>
+
+                <p class="texto-registro">
+                    Para participar en la ruleta,
+                    primero debes registrarte.
+                </p>
+
+                <form id="formRegistro">
+
+                    <label for="nombreUsuario">
+                        Nombre
+                    </label>
+
+                    <input
+                        type="text"
+                        id="nombreUsuario"
+                        name="nombre"
+                        placeholder="Escribe tu nombre"
+                        autocomplete="name"
+                        required
+                    >
+
+                    <label for="codigoCredencial">
+                        ingresa el codigo de tu credencial
+                    </label>
+
+                    <input
+                        type="text"
+                        id="codigoCredencial"
+                        name="codigo"
+                        placeholder="Escribe tu código"
+                        autocomplete="off"
+                        required
+                    >
+
+                    <button
+                        type="submit"
+                        class="btn-registrarme"
+                    >
+                        REGISTRARME
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+
+        <!-- ==========================================
+             MODAL RESULTADO
+             ========================================== -->
+
+        <div
+            id="modalResultado"
+            class="modal-resultado"
+        >
+
+            <div class="resultado-contenido">
+
+                <img
+                    id="resultadoImagen"
+                    class="resultado-imagen"
+                    src=""
+                    alt="Premio ganado"
+                >
+
+                <button
+                    id="cerrarResultado"
+                    class="boton-resultado"
+                    type="button"
+                >
+                    ACEPTAR
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- ==========================================
+             BOTONES DE PREMIOS
+             ========================================== -->
+
+        <section
+            class="premios"
+            id="premios"
+        >
+
+            <button
+                class="boton-premio"
+                data-boton="1"
+            >
+                <img
+                    src="boton1.png"
+                    alt="Premio 1"
+                >
+            </button>
+
+            <button
+                class="boton-premio"
+                data-boton="2"
+            >
+                <img
+                    src="boton2.png"
+                    alt="Premio 2"
+                >
+            </button>
+
+            <button
+                class="boton-premio"
+                data-boton="3"
+            >
+                <img
+                    src="boton3.png"
+                    alt="Premio 3"
+                >
+            </button>
+
+            <button
+                class="boton-premio"
+                data-boton="4"
+            >
+                <img
+                    src="boton4.png"
+                    alt="Premio 4"
+                >
+            </button>
+
+            <button
+                class="boton-premio"
+                data-boton="5"
+            >
+                <img
+                    src="boton5.png"
+                    alt="Premio 5"
+                >
+            </button>
+
+            <button
+                class="boton-premio"
+                data-boton="6"
+            >
+                <img
+                    src="boton6.png"
+                    alt="Premio 6"
+                >
+            </button>
+
+            <button
+                class="boton-premio"
+                data-boton="7"
+            >
+                <img
+                    src="boton7.png"
+                    alt="Premio 7"
+                >
+            </button>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- ==========================================
+         MODAL REDES SOCIALES
+         ========================================== -->
+
+    <div
+        class="modal-redes"
+        id="modalRedes"
+    >
+
+        <div class="redes-contenido">
+
+            <button
+                class="cerrar-redes"
+                id="cerrarRedes"
+                type="button"
+                aria-label="Cerrar"
+            >
+                ×
+            </button>
+
+            <h2>💜 Síguenos 💜</h2>
+
+            <div class="redes-botones">
+
+                <a
+                    href="#"
+                    id="linkInstagram"
+                    target="_blank"
+                >
+                    Instagram
+                </a>
+
+                <a
+                    href="#"
+                    id="linkFacebook"
+                    target="_blank"
+                >
+                    Facebook
+                </a>
+
+                <a
+                    href="#"
+                    id="linkTikTok"
+                    target="_blank"
+                >
+                    TikTok
+                </a>
+
+                <a
+                    href="#"
+                    id="linkYouTube"
+                    target="_blank"
+                >
+                    YouTube
+                </a>
+
+                <a
+                    href="#"
+                    id="linkSpotify"
+                    target="_blank"
+                >
+                    Spotify
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ==========================================
+         MODAL ACCESO ADMINISTRADOR
+         ========================================== -->
+
+    <div
+        class="modal-panel"
+        id="modalPanel"
+    >
+
+        <div class="panel-login">
+
+            <button
+                class="cerrar-panel"
+                id="cerrarPanel"
+                type="button"
+                aria-label="Cerrar"
+            >
+                ×
+            </button>
+
+            <h2>💜 ACCESO AL PANEL 💜</h2>
+
+            <p>
+                Solo personal autorizado
+            </p>
+
+            <form id="formPanelLogin">
+
+                <label for="correoAdmin">
+                    Correo electrónico
+                </label>
+
+                <input
+                    type="email"
+                    id="correoAdmin"
+                    placeholder="Escribe tu correo"
+                    autocomplete="username"
+                    required
+                >
+
+                <label for="passwordAdmin">
+                    Contraseña
+                </label>
+
+                <input
+                    type="password"
+                    id="passwordAdmin"
+                    placeholder="Escribe tu contraseña"
+                    autocomplete="current-password"
+                    required
+                >
+
+                <button
+                    type="submit"
+                    class="btn-entrar-panel"
+                >
+                    ENTRAR
+                </button>
+
+            </form>
+
+            <p
+                id="mensajePanel"
+                class="mensaje-panel"
+            ></p>
+
+        </div>
+
+    </div>
+
+
+    <!-- ==========================================
+         PANEL PRINCIPAL DE ADMINISTRACIÓN
+         ========================================== -->
+
+    <div
+        class="panel-admin"
+        id="panelAdmin"
+    >
+
+        <div class="panel-admin-contenido">
+
+            <button
+                class="cerrar-panel-admin"
+                id="cerrarPanelAdmin"
+                type="button"
+                aria-label="Cerrar panel"
+            >
+                ×
+            </button>
+
+            <h1>💜 PANEL DE ADMINISTRACIÓN 💜</h1>
+
+            <p class="panel-bienvenida">
+                Bienvenido, administrador
+            </p>
+
+
+            <!-- ==========================================
+                 CONTROL DE PARTIDA
+                 ========================================== -->
+
+            <div class="panel-seccion">
+
+                <h2>🎮 Partida</h2>
+
+                <p>
+                    Controla la partida actual de la ruleta.
+                </p>
+
+                <button
+                    type="button"
+                    id="btnReiniciarPartida"
+                    class="panel-boton"
+                >
+                    🔄 REINICIAR PARTIDA
+                </button>
+
+            </div>
+
+
+            <!-- ==========================================
+                 CONTROL DE PREMIOS
+                 ========================================== -->
+
+            <div class="panel-seccion">
+
+                <h2>🎁 Premios</h2>
+
+                <p>
+                    Administra los premios disponibles
+                    para esta partida.
+                </p>
+
+                <button
+                    type="button"
+                    id="btnAdministrarPremios"
+                    class="panel-boton"
+                >
+                    🎁 ADMINISTRAR PREMIOS
+                </button>
+
+            </div>
+
+
+            <!-- ==========================================
+                 REGISTROS
+                 ========================================== -->
+
+            <div class="panel-seccion">
+
+                <h2>👥 Registros</h2>
+
+                <p>
+                    Consulta los participantes registrados.
+                </p>
+
+                <button
+                    type="button"
+                    id="btnVerRegistros"
+                    class="panel-boton"
+                >
+                    👥 VER REGISTROS
+                </button>
+
+            </div>
+
+
+            <!-- ==========================================
+                 GANADORES
+                 ========================================== -->
+
+            <div class="panel-seccion">
+
+                <h2>🏆 Ganadores</h2>
+
+                <p>
+                    Consulta quién ganó y qué premio recibió.
+                </p>
+
+                <button
+                    type="button"
+                    id="btnVerGanadores"
+                    class="panel-boton"
+                >
+                    🏆 VER GANADORES
+                </button>
+
+            </div>
+
+
+            <!-- ==========================================
+                 CERRAR SESIÓN
+                 ========================================== -->
+
+            <button
+                type="button"
+                id="btnCerrarSesionAdmin"
+                class="panel-boton cerrar-sesion"
+            >
+                🚪 CERRAR SESIÓN
+            </button>
+
+        </div>
+
+    </div>
+<!-- ==========================================
+     MODAL ADMINISTRAR PREMIOS
+     ========================================== -->
+
+<div
+    class="modal-premios-admin"
+    id="modalPremiosAdmin"
+>
+
+    <div class="premios-admin-contenido">
+
+        <!-- ==========================================
+             BOTÓN CERRAR
+             ========================================== -->
+
+        <button
+            type="button"
+            id="cerrarPremiosAdmin"
+            class="cerrar-panel-admin"
+            aria-label="Cerrar"
+        >
+            ×
+        </button>
+
+
+        <!-- ==========================================
+             TÍTULO
+             ========================================== -->
+
+        <h2>🎁 ADMINISTRAR PREMIOS</h2>
+
+        <p>
+            Controla los premios y las cantidades
+            disponibles para la partida.
+        </p>
+
+
+        <!-- ==========================================
+             AGREGAR PREMIO
+             ========================================== -->
+
+        <button
+            type="button"
+            id="btnAgregarPremio"
+            class="panel-boton"
+        >
+            ➕ AGREGAR PREMIO
+        </button>
+
+
+        <!-- ==========================================
+             FORMULARIO AGREGAR PREMIO
+             ========================================== -->
+
+        <div
+            id="formAgregarPremio"
+            class="form-agregar-premio"
+            style="display: none;"
+        >
+
+            <h3>➕ NUEVO PREMIO</h3>
+
+            <label for="nombreNuevoPremio">
+                Nombre del premio
+            </label>
+
+            <input
+                type="text"
+                id="nombreNuevoPremio"
+                placeholder="Ejemplo: Camisa"
+            >
+
+
+            <label for="cantidadTotalNuevoPremio">
+                Cantidad total
+            </label>
+
+            <input
+                type="number"
+                id="cantidadTotalNuevoPremio"
+                min="1"
+                value="1"
+            >
+
+
+            <label for="colorNuevoPremio">
+                Color
+            </label>
+
+            <input
+                type="text"
+                id="colorNuevoPremio"
+                placeholder="Ejemplo: azul cielo"
+            >
+
+
+            <div class="controles-nuevo-premio">
+
+                <button
+                    type="button"
+                    id="btnGuardarNuevoPremio"
+                    class="panel-boton"
+                >
+                    💾 GUARDAR PREMIO
+                </button>
+
+                <button
+                    type="button"
+                    id="btnCancelarNuevoPremio"
+                    class="panel-boton"
+                >
+                    ❌ CANCELAR
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- ==========================================
+             LISTA DE PREMIOS
+             ========================================== -->
+
+        <div id="listaPremiosAdmin">
+
+            <p>
+                Cargando premios...
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+    <!-- ==========================================
+         JAVASCRIPT
+         ========================================== -->
+
+    <script
+        type="module"
+        src="app.js"
+    ></script>
+
+</body>
+
+</html>
+```
