@@ -65,6 +65,9 @@ const modalPanel =
 const cerrarPanel =
     document.getElementById("cerrarPanel");
 
+const cerrarPanelAdmin =
+    document.getElementById("cerrarPanelAdmin");
+
     const formPanelLogin =
     document.getElementById("formPanelLogin");
 
