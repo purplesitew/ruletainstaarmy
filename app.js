@@ -1135,35 +1135,46 @@ btnVerGanadores.addEventListener(
                         tarjeta.className =
                             "ganador-admin-item";
 
-                        tarjeta.innerHTML = `
+                       tarjeta.innerHTML = `
 
-                            <h3>
-                                🏆 ${
-                                    participante.nombre ||
-                                    "Sin nombre"
-                                }
-                            </h3>
+    <h3>
+        🏆 ${
+            participante.nombre ||
+            "Sin nombre"
+        }
+    </h3>
 
-                            <p>
-                                Premio:
-                                <strong>
-                                    ${
-                                        participante.premio
-                                    }
-                                </strong>
-                            </p>
+    <p>
+        Código:
+        <strong>
+            ${
+                participante.codigo ||
+                "Sin código"
+            }
+        </strong>
+    </p>
 
-                            <p>
-                                Sección:
-                                <strong>
-                                    ${
-                                        participante.seccion ||
-                                        "Sin sección"
-                                    }
-                                </strong>
-                            </p>
+    <p>
+        Premio:
+        <strong>
+            ${
+                participante.premio ||
+                "Sin premio"
+            }
+        </strong>
+    </p>
 
-                        `;
+    <p>
+        Sección:
+        <strong>
+            ${
+                participante.seccion ||
+                "Sin sección"
+            }
+        </strong>
+    </p>
+
+`;
 
                         listaGanadoresAdmin.appendChild(
                             tarjeta
