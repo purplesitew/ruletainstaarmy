@@ -1173,6 +1173,16 @@ btnVerGanadores.addEventListener(
             }
         </strong>
     </p>
+    <p>
+    Fecha:
+    <strong>
+        ${
+            participante.fechaPremio
+                ? participante.fechaPremio.toDate().toLocaleString("es-MX")
+                : "Sin fecha"
+        }
+    </strong>
+</p>
 
 `;
 
