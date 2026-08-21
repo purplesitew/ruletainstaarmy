@@ -792,7 +792,38 @@
         type="module"
         src="app.js"
     ></script>
+<!-- ==========================================
+     REGISTRAR SERVICE WORKER
+     ========================================== -->
 
+<script>
+    if ("serviceWorker" in navigator) {
+
+        window.addEventListener("load", () => {
+
+            navigator.serviceWorker
+                .register("./sw.js")
+                .then((registro) => {
+
+                    console.log(
+                        "Service Worker registrado correctamente:",
+                        registro.scope
+                    );
+
+                })
+                .catch((error) => {
+
+                    console.error(
+                        "Error al registrar Service Worker:",
+                        error
+                    );
+
+                });
+
+        });
+
+    }
+</script>
 </body>
 
 </html>
