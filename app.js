@@ -1881,3 +1881,104 @@ console.error(
     );
 
 });
+
+// ==========================================
+// INSTALACIÓN DE LA PWA
+// ==========================================
+
+let deferredPrompt = null;
+
+const btnInstalar =
+    document.getElementById("btnInstalar");
+
+
+// ==========================================
+// DETECTAR CUANDO EL NAVEGADOR PERMITE
+// INSTALAR LA PWA
+// ==========================================
+
+window.addEventListener(
+    "beforeinstallprompt",
+    (event) => {
+
+        event.preventDefault();
+
+        deferredPrompt = event;
+
+        console.log(
+            "La PWA puede instalarse."
+        );
+
+        if (btnInstalar) {
+
+            btnInstalar.style.display =
+                "flex";
+
+        }
+
+    }
+);
+
+
+// ==========================================
+// BOTÓN INSTALAR
+// ==========================================
+
+if (btnInstalar) {
+
+    btnInstalar.addEventListener(
+        "click",
+        async () => {
+
+            console.log(
+                "BOTÓN INSTALAR FUNCIONA"
+            );
+
+            if (!deferredPrompt) {
+
+                alert(
+                    "La opción de instalación no está disponible en este momento."
+                );
+
+                return;
+            }
+
+            deferredPrompt.prompt();
+
+            const resultado =
+                await deferredPrompt.userChoice;
+
+            console.log(
+                "Resultado de instalación:",
+                resultado.outcome
+            );
+
+            deferredPrompt = null;
+
+        }
+    );
+
+}
+
+
+// ==========================================
+// DETECTAR CUANDO LA PWA YA FUE INSTALADA
+// ==========================================
+
+window.addEventListener(
+    "appinstalled",
+    () => {
+
+        console.log(
+            "PWA instalada correctamente."
+        );
+
+        if (btnInstalar) {
+
+            btnInstalar.style.display =
+                "none";
+
+        }
+
+    }
+);
