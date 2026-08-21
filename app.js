@@ -912,6 +912,307 @@ cerrarPremiosAdmin.addEventListener(
 
     }
 );
+// ==========================================
+// ELEMENTOS - REGISTROS Y GANADORES
+// ==========================================
+
+const btnVerRegistros =
+    document.getElementById("btnVerRegistros");
+
+const modalRegistrosAdmin =
+    document.getElementById("modalRegistrosAdmin");
+
+const cerrarRegistrosAdmin =
+    document.getElementById("cerrarRegistrosAdmin");
+
+const listaRegistrosAdmin =
+    document.getElementById("listaRegistrosAdmin");
+
+
+const btnVerGanadores =
+    document.getElementById("btnVerGanadores");
+
+const modalGanadoresAdmin =
+    document.getElementById("modalGanadoresAdmin");
+
+const cerrarGanadoresAdmin =
+    document.getElementById("cerrarGanadoresAdmin");
+
+const listaGanadoresAdmin =
+    document.getElementById("listaGanadoresAdmin");
+
+
+// ==========================================
+// VER REGISTROS
+// ==========================================
+
+btnVerRegistros.addEventListener(
+    "click",
+    async () => {
+
+        console.log(
+            "BOTÓN VER REGISTROS FUNCIONA"
+        );
+
+        modalRegistrosAdmin.style.display =
+            "flex";
+
+        listaRegistrosAdmin.innerHTML =
+            "<p>Cargando registros...</p>";
+
+        try {
+
+            const participantesRef =
+                collection(
+                    db,
+                    "participantes"
+                );
+
+            const participantesSnap =
+                await getDocs(
+                    participantesRef
+                );
+
+            console.log(
+                "Registros encontrados:",
+                participantesSnap.size
+            );
+
+            if (participantesSnap.empty) {
+
+                listaRegistrosAdmin.innerHTML =
+                    "<p>No hay participantes registrados.</p>";
+
+                return;
+            }
+
+            listaRegistrosAdmin.innerHTML =
+                "";
+
+            participantesSnap.forEach(
+                (participanteDoc) => {
+
+                    const participante =
+                        participanteDoc.data();
+
+                    const tarjeta =
+                        document.createElement(
+                            "div"
+                        );
+
+                    tarjeta.className =
+                        "registro-admin-item";
+
+                    tarjeta.innerHTML = `
+
+                        <h3>
+                            👤 ${
+                                participante.nombre ||
+                                "Sin nombre"
+                            }
+                        </h3>
+
+                        <p>
+                            Código:
+                            <strong>
+                                ${
+                                    participante.codigo ||
+                                    "Sin código"
+                                }
+                            </strong>
+                        </p>
+
+                        <p>
+                            Estado:
+                            <strong>
+                                ${
+                                    participante.yaJugo
+                                        ? "Ya jugó"
+                                        : "No ha jugado"
+                                }
+                            </strong>
+                        </p>
+
+                    `;
+
+                    listaRegistrosAdmin.appendChild(
+                        tarjeta
+                    );
+
+                }
+            );
+
+        } catch (error) {
+
+            console.error(
+                "Error al cargar registros:",
+                error
+            );
+
+            listaRegistrosAdmin.innerHTML =
+                "<p>❌ No se pudieron cargar los registros.</p>";
+        }
+
+    }
+);
+
+
+// ==========================================
+// CERRAR REGISTROS
+// ==========================================
+
+cerrarRegistrosAdmin.addEventListener(
+    "click",
+    () => {
+
+        modalRegistrosAdmin.style.display =
+            "none";
+
+    }
+);
+
+
+// ==========================================
+// VER GANADORES
+// ==========================================
+
+btnVerGanadores.addEventListener(
+    "click",
+    async () => {
+
+        console.log(
+            "BOTÓN VER GANADORES FUNCIONA"
+        );
+
+        modalGanadoresAdmin.style.display =
+            "flex";
+
+        listaGanadoresAdmin.innerHTML =
+            "<p>Cargando ganadores...</p>";
+
+        try {
+
+            const participantesRef =
+                collection(
+                    db,
+                    "participantes"
+                );
+
+            const participantesSnap =
+                await getDocs(
+                    participantesRef
+                );
+
+            console.log(
+                "Participantes revisados:",
+                participantesSnap.size
+            );
+
+            listaGanadoresAdmin.innerHTML =
+                "";
+
+            let ganadoresEncontrados =
+                0;
+
+            participantesSnap.forEach(
+                (participanteDoc) => {
+
+                    const participante =
+                        participanteDoc.data();
+
+                    if (
+                        participante.yaJugo === true &&
+                        participante.premio
+                    ) {
+
+                        ganadoresEncontrados++;
+
+                        const tarjeta =
+                            document.createElement(
+                                "div"
+                            );
+
+                        tarjeta.className =
+                            "ganador-admin-item";
+
+                        tarjeta.innerHTML = `
+
+                            <h3>
+                                🏆 ${
+                                    participante.nombre ||
+                                    "Sin nombre"
+                                }
+                            </h3>
+
+                            <p>
+                                Premio:
+                                <strong>
+                                    ${
+                                        participante.premio
+                                    }
+                                </strong>
+                            </p>
+
+                            <p>
+                                Sección:
+                                <strong>
+                                    ${
+                                        participante.seccion ||
+                                        "Sin sección"
+                                    }
+                                </strong>
+                            </p>
+
+                        `;
+
+                        listaGanadoresAdmin.appendChild(
+                            tarjeta
+                        );
+                    }
+
+                }
+            );
+
+
+            if (ganadoresEncontrados === 0) {
+
+                listaGanadoresAdmin.innerHTML =
+                    "<p>No hay ganadores todavía.</p>";
+            }
+
+            console.log(
+                "Ganadores encontrados:",
+                ganadoresEncontrados
+            );
+
+        } catch (error) {
+
+            console.error(
+                "Error al cargar ganadores:",
+                error
+            );
+
+            listaGanadoresAdmin.innerHTML =
+                "<p>❌ No se pudieron cargar los ganadores.</p>";
+        }
+
+    }
+);
+
+
+// ==========================================
+// CERRAR GANADORES
+// ==========================================
+
+cerrarGanadoresAdmin.addEventListener(
+    "click",
+    () => {
+
+        modalGanadoresAdmin.style.display =
+            "none";
+
+    }
+);
   
     // ==========================================
 // ABRIR PANEL DE ADMINISTRADOR
