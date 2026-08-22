@@ -1807,8 +1807,6 @@ const codigoOriginal =
     const pais =
     document.getElementById("paisUsuario").value.trim();
 
-const pais =
-    document.getElementById("paisUsuario").value.trim();
 
 
     // ==========================================
