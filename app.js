@@ -74,6 +74,9 @@ const btnVolverDesdeRegistros =
 const btnVolverDesdeGanadores =
     document.getElementById("btnVolverDesdeGanadores");
 
+const btnVolverDesdePremios =
+    document.getElementById("btnVolverDesdePremios");
+
 // ==========================================
 // VOLVER AL PANEL DESDE GANADORES
 // ==========================================
@@ -942,6 +945,27 @@ cerrarPremiosAdmin.addEventListener(
 
     }
 );
+// ==========================================
+// VOLVER AL PANEL DESDE PREMIOS
+// ==========================================
+
+if (btnVolverDesdePremios) {
+
+    btnVolverDesdePremios.onclick = function () {
+
+        console.log(
+            "BOTÓN VOLVER DESDE PREMIOS FUNCIONA"
+        );
+
+        modalPremiosAdmin.style.display =
+            "none";
+
+        panelAdmin.style.display =
+            "flex";
+
+    };
+
+}
 // ==========================================
 // ELEMENTOS - REGISTROS Y GANADORES
 // ==========================================
