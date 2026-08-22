@@ -74,6 +74,27 @@ const btnVolverDesdeRegistros =
 const btnVolverDesdeGanadores =
     document.getElementById("btnVolverDesdeGanadores");
 
+// ==========================================
+// VOLVER AL PANEL DESDE GANADORES
+// ==========================================
+
+if (btnVolverDesdeGanadores) {
+
+    btnVolverDesdeGanadores.onclick = function () {
+
+        console.log(
+            "BOTÓN VOLVER DESDE GANADORES FUNCIONA"
+        );
+
+        modalGanadoresAdmin.style.display =
+            "none";
+
+        panelAdmin.style.display =
+            "flex";
+    };
+
+}
+
     const formPanelLogin =
     document.getElementById("formPanelLogin");
 
@@ -1252,30 +1273,6 @@ btnVerGanadores.addEventListener(
 
     }
 );
-// ==========================================
-// VOLVER AL PANEL DESDE GANADORES
-// ==========================================
-
-if (btnVolverDesdeGanadores) {
-
-    btnVolverDesdeGanadores.addEventListener(
-        "click",
-        () => {
-
-            modalGanadoresAdmin.style.display =
-                "none";
-
-            panelAdmin.style.display =
-                "flex";
-
-            console.log(
-                "REGRESANDO AL PANEL DESDE GANADORES"
-            );
-
-        }
-    );
-
-}
 
 
 // ==========================================
