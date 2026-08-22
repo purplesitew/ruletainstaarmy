@@ -1249,6 +1249,27 @@ btnPanel.addEventListener("click", () => {
     modalPanel.style.display = "flex";
 
 });
+
+// ==========================================
+// CERRAR PANEL PRINCIPAL DE ADMINISTRACIÓN
+// ==========================================
+
+if (cerrarPanelAdmin) {
+
+    cerrarPanelAdmin.addEventListener(
+        "click",
+        () => {
+
+            panelAdmin.style.display = "none";
+
+            console.log(
+                "PANEL ADMINISTRACIÓN CERRADO"
+            );
+
+        }
+    );
+
+}
 // ==========================================
 // CERRAR PANEL DE ADMINISTRADOR
 // ==========================================
