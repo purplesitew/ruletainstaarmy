@@ -1797,12 +1797,16 @@ formRegistro.addEventListener("submit", async (evento) => {
     // OBTENER DATOS
     // ==========================================
 
-    const nombre =
-        document.getElementById("nombreUsuario").value.trim();
+   const nombre =
+    document.getElementById("nombreUsuario").value.trim();
 
 
-    const codigoOriginal =
-        document.getElementById("codigoCredencial").value.trim();
+const codigoOriginal =
+    document.getElementById("codigoCredencial").value.trim();
+
+
+const pais =
+    document.getElementById("paisUsuario").value.trim();
 
 
     // ==========================================
@@ -1815,6 +1819,13 @@ formRegistro.addEventListener("submit", async (evento) => {
 
         return;
     }
+    
+    if (!pais) {
+
+    alert("Por favor, escribe tu país.");
+
+    return;
+}
 
 
     // ==========================================
