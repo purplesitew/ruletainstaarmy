@@ -1920,6 +1920,8 @@ try {
 
     codigo: codigo,
 
+    pais: pais,
+
     partidaId: "partida1",
 
     yaJugo: false,
@@ -1939,6 +1941,8 @@ participanteId = participanteDoc.id;
     console.log("Nombre:", nombre);
 
     console.log("Código:", codigo);
+
+      console.log("País:", pais);
 
 
 } catch (error) {
