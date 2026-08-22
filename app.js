@@ -1897,29 +1897,7 @@ try {
 
 } else {
 
-    // ------------------------------------------
-    // Crear participante nuevo
-    // ------------------------------------------
-
-    const participanteDoc =
-        await addDoc(participantesRef, {
-
-            nombre: nombre,
-
-            codigo: codigo,
-
-            partidaId: "partida1",
-
-            yaJugo: false,
-
-            fechaRegistro: serverTimestamp()
-
-        });
-
-    participanteId =
-        participanteDoc.id;
-
-}
+ 
 
     // ------------------------------------------
     // Crear participante
