@@ -1942,8 +1942,9 @@ participanteId = participanteDoc.id;
 
     console.log("Código:", codigo);
 
-      console.log("País:", pais);
+     console.log("País:", pais);
 
+}
 
 } catch (error) {
 
