@@ -1804,6 +1804,8 @@ formRegistro.addEventListener("submit", async (evento) => {
 const codigoOriginal =
     document.getElementById("codigoCredencial").value.trim();
 
+    const pais =
+    document.getElementById("paisUsuario").value.trim();
 
 const pais =
     document.getElementById("paisUsuario").value.trim();
