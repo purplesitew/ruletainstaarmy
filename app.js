@@ -68,6 +68,9 @@ const cerrarPanel =
 const cerrarPanelAdmin =
     document.getElementById("cerrarPanelAdmin");
 
+const btnVolverDesdeRegistros =
+    document.getElementById("btnVolverDesdeRegistros");
+
     const formPanelLogin =
     document.getElementById("formPanelLogin");
 
@@ -1044,6 +1047,30 @@ btnVerRegistros.addEventListener(
 
                 }
             );
+            // ==========================================
+// VOLVER AL PANEL DESDE REGISTROS
+// ==========================================
+
+if (btnVolverDesdeRegistros) {
+
+    btnVolverDesdeRegistros.addEventListener(
+        "click",
+        () => {
+
+            modalRegistrosAdmin.style.display =
+                "none";
+
+            panelAdmin.style.display =
+                "flex";
+
+            console.log(
+                "REGRESANDO AL PANEL DESDE REGISTROS"
+            );
+
+        }
+    );
+
+}
 
         } catch (error) {
 
