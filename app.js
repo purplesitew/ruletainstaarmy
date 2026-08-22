@@ -71,6 +71,9 @@ const cerrarPanelAdmin =
 const btnVolverDesdeRegistros =
     document.getElementById("btnVolverDesdeRegistros");
 
+const btnVolverDesdeGanadores =
+    document.getElementById("btnVolverDesdeGanadores");
+
     const formPanelLogin =
     document.getElementById("formPanelLogin");
 
@@ -1249,6 +1252,30 @@ btnVerGanadores.addEventListener(
 
     }
 );
+// ==========================================
+// VOLVER AL PANEL DESDE GANADORES
+// ==========================================
+
+if (btnVolverDesdeGanadores) {
+
+    btnVolverDesdeGanadores.addEventListener(
+        "click",
+        () => {
+
+            modalGanadoresAdmin.style.display =
+                "none";
+
+            panelAdmin.style.display =
+                "flex";
+
+            console.log(
+                "REGRESANDO AL PANEL DESDE GANADORES"
+            );
+
+        }
+    );
+
+}
 
 
 // ==========================================
