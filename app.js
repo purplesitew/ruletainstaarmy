@@ -1675,8 +1675,7 @@ const premios = [
 // ELEGIR PREMIO
 // ==========================================
 
-const premioGanador =
-    Math.floor(Math.random() * premios.length);
+const premioGanador = 4;
 
 const premioSeleccionado =
     premios[premioGanador];
