@@ -1241,7 +1241,15 @@ btnVerGanadores.addEventListener(
             }
         </strong>
     </p>
-
+<p>
+    País:
+    <strong>
+        ${
+            participante.pais ||
+            "Sin país"
+        }
+    </strong>
+</p>
     <p>
         Premio:
         <strong>
