@@ -1077,6 +1077,16 @@ btnVerRegistros.addEventListener(
                         </p>
 
                         <p>
+     País:
+    <strong>
+        ${
+            participante.pais ||
+            "Sin país"
+        }
+    </strong>
+</p>
+
+                        <p>
                             Estado:
                             <strong>
                                 ${
