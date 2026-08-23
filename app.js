@@ -52,6 +52,9 @@ console.log("PWA de la ruleta iniciada");
 
 const btnGirar = document.getElementById("btnGirar");
 
+const audioFestejo =
+    document.getElementById("audioFestejo");
+
 const btnRedes = document.getElementById("btnRedes");
 
 const btnPanel =
@@ -1779,12 +1782,23 @@ console.log("Sección:", nombrePremio);
 console.log("Premio:", premioGanado);
 
 
+// ==========================================
+// SONIDO DE FESTEJO AL MOSTRAR EL PREMIO
+// ==========================================
+
+audioFestejo.currentTime = 0;
+
+audioFestejo.play().catch(() => {
+    console.log(
+        "No se pudo reproducir el sonido de festejo."
+    );
+});
+
 mostrarResultado(
     nombrePremio,
     premioGanado,
     premioGanador
 );
-
 }, 5000);
 
 console.log("La ruleta está girando.");
