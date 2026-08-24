@@ -80,6 +80,22 @@ const btnVolverDesdeGanadores =
 const btnVolverDesdePremios =
     document.getElementById("btnVolverDesdePremios");
 
+const modalInstrucciones =
+    document.getElementById("modalInstrucciones");
+
+const cerrarInstrucciones =
+    document.getElementById("cerrarInstrucciones");
+
+cerrarInstrucciones.addEventListener(
+    "click",
+    () => {
+
+        modalInstrucciones.style.display =
+            "none";
+
+    }
+);
+
 // ==========================================
 // VOLVER AL PANEL DESDE GANADORES
 // ==========================================
