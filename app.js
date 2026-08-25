@@ -1623,7 +1623,7 @@ function codigoValido(codigo) {
 // BOTÓN GIRAR RULETA
 // ==========================================
 
-btnGirar.addEventListener("click", () => {
+btnGirar.addEventListener("click", async () => {
 
     const registrado =
         btnGirar.dataset.registrado === "true";
@@ -1652,6 +1652,48 @@ audioInicio.currentTime = 0;
 btnGirar.disabled = true;
 
 btnGirar.style.pointerEvents = "none";
+
+    // ==========================================
+// OBTENER DATOS DEL PARTICIPANTE
+// ==========================================
+
+const participanteRef = doc(
+    db,
+    "participantes",
+    participanteId
+);
+
+const participanteSnap =
+    await getDoc(participanteRef);
+
+if (!participanteSnap.exists()) {
+
+    console.error(
+        "No se encontró el participante."
+    );
+
+    alert(
+        "No se pudo encontrar tu registro."
+    );
+
+    btnGirar.disabled = false;
+    btnGirar.style.pointerEvents = "auto";
+
+    return;
+}
+
+const participanteActual =
+    participanteSnap.data();
+
+const paisParticipante =
+    (participanteActual.pais || "")
+        .trim()
+        .toLowerCase();
+
+console.log(
+    "País del participante:",
+    paisParticipante
+);
 
 
 // ==========================================
