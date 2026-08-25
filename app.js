@@ -2038,6 +2038,35 @@ try {
 
         return;
     }
+      // ------------------------------------------
+// ACTUALIZAR DATOS DEL PARTICIPANTE
+// ------------------------------------------
+
+await updateDoc(
+    doc(
+        db,
+        "participantes",
+        participanteExistente.id
+    ),
+    {
+        nombre: nombre,
+        pais: pais
+    }
+);
+
+console.log(
+    "Datos del participante actualizados."
+);
+
+console.log(
+    "Nombre:",
+    nombre
+);
+
+console.log(
+    "País:",
+    pais
+);
 
     // El participante existe,
     // pero yaJugo es false.
