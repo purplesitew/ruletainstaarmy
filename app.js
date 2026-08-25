@@ -1945,9 +1945,13 @@ formRegistro.addEventListener("submit", async (evento) => {
 const codigoOriginal =
     document.getElementById("codigoCredencial").value.trim();
 
-    const pais =
+  const pais =
     document.getElementById("paisUsuario").value.trim();
 
+console.log(
+    "PAÍS CAPTURADO EN FORMULARIO:",
+    pais
+);
 
 
     // ==========================================
