@@ -2,7 +2,7 @@
 // SERVICE WORKER - RULETA PWA
 // ==========================================
 
-const CACHE_NAME = "ruleta-pwa-v25";
+const CACHE_NAME = "ruleta-pwa-v26";
 
 const ARCHIVOS = [
     "./",
