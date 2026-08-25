@@ -1736,52 +1736,16 @@ const premios = [
 // ELEGIR PREMIO
 // ==========================================
 
-// Jimin corresponde al índice 4.
-// Durante esta etapa NO está disponible.
-
-const indiceJimin = 4;
-
-
-// ==========================================
-// PREMIOS DISPONIBLES
-// ==========================================
-
-// Quitamos temporalmente Jimin de la selección.
-// Los otros 6 premios sí pueden salir.
-
-const premiosDisponibles =
-    premios
-        .map((premio, indice) => ({
-            premio,
-            indice
-        }))
-        .filter(
-            item =>
-                item.indice !== indiceJimin
-        );
-
-
-// ==========================================
-// ELEGIR PREMIO ALEATORIO
-// ==========================================
-
-const posicionAleatoria =
-    Math.floor(
-        Math.random() *
-        premiosDisponibles.length
-    );
-
-const premioElegido =
-    premiosDisponibles[posicionAleatoria];
-
-
-// Índice original de la ruleta.
+// Todos los premios están disponibles,
+// incluido Jimin.
 
 const premioGanador =
-    premioElegido.indice;
+    Math.floor(
+        Math.random() * premios.length
+    );
 
 const premioSeleccionado =
-    premioElegido.premio;
+    premios[premioGanador];
 
 const nombrePremio =
     premioSeleccionado.nombre;
@@ -1813,6 +1777,7 @@ console.log(
     "País del participante:",
     paisParticipante
 );
+
 // ==========================================
 // CALCULAR GIRO
 // ==========================================
