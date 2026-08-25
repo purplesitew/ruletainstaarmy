@@ -1736,10 +1736,52 @@ const premios = [
 // ELEGIR PREMIO
 // ==========================================
 
-const premioGanador = 4;
+// Jimin corresponde al índice 4.
+// Durante esta etapa NO está disponible.
+
+const indiceJimin = 4;
+
+
+// ==========================================
+// PREMIOS DISPONIBLES
+// ==========================================
+
+// Quitamos temporalmente Jimin de la selección.
+// Los otros 6 premios sí pueden salir.
+
+const premiosDisponibles =
+    premios
+        .map((premio, indice) => ({
+            premio,
+            indice
+        }))
+        .filter(
+            item =>
+                item.indice !== indiceJimin
+        );
+
+
+// ==========================================
+// ELEGIR PREMIO ALEATORIO
+// ==========================================
+
+const posicionAleatoria =
+    Math.floor(
+        Math.random() *
+        premiosDisponibles.length
+    );
+
+const premioElegido =
+    premiosDisponibles[posicionAleatoria];
+
+
+// Índice original de la ruleta.
+
+const premioGanador =
+    premioElegido.indice;
 
 const premioSeleccionado =
-    premios[premioGanador];
+    premioElegido.premio;
 
 const nombrePremio =
     premioSeleccionado.nombre;
@@ -1747,20 +1789,30 @@ const nombrePremio =
 const premioGanado =
     premioSeleccionado.premio;
 
-    console.log("Índice elegido:", premioGanador);
-console.log("Sección elegida:", nombrePremio);
-console.log("Premio elegido:", premioGanado);
 
 // ==========================================
 // COMPROBACIÓN
 // ==========================================
 
-console.log("Índice elegido:", premioGanador);
+console.log(
+    "Índice elegido:",
+    premioGanador
+);
 
-console.log("Sección elegida:", nombrePremio);
+console.log(
+    "Sección elegida:",
+    nombrePremio
+);
 
-console.log("Premio elegido:", premioGanado);;
+console.log(
+    "Premio elegido:",
+    premioGanado
+);
 
+console.log(
+    "País del participante:",
+    paisParticipante
+);
 // ==========================================
 // CALCULAR GIRO
 // ==========================================
