@@ -1719,7 +1719,7 @@ const premios = [
     },
     {
         nombre: "Jimin",
-        premio: "Camiseta"
+        premio: "Insta pasaporte Army"
     },
     {
         nombre: "Jungkook",
