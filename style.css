@@ -1474,3 +1474,18 @@ body {
 
     z-index: 2;
 }
+
+/* ==========================================
+   ANUNCIO ADSTERRA
+   ========================================== */
+
+.anuncio-adsterra {
+    width: 100%;
+    max-width: 728px;
+
+    margin: 30px auto 40px;
+
+    text-align: center;
+
+    overflow: hidden;
+}
