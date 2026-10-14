@@ -80,21 +80,42 @@ const btnVolverDesdeGanadores =
 const btnVolverDesdePremios =
     document.getElementById("btnVolverDesdePremios");
 
+
 const modalInstrucciones =
     document.getElementById("modalInstrucciones");
 
 const cerrarInstrucciones =
     document.getElementById("cerrarInstrucciones");
 
-cerrarInstrucciones.addEventListener(
-    "click",
-    () => {
+cerrarInstrucciones.addEventListener("click", () => {
+    // Cerrar las instrucciones normalmente
+    modalInstrucciones.style.display = "none";
 
-        modalInstrucciones.style.display =
-            "none";
+    // Abrir el SmartLink como máximo una vez cada 3 horas
+    const ultimaApertura = Number(
+        localStorage.getItem("ultimaAperturaSmartLink") || 0
+    );
 
+    const ahora = Date.now();
+    const tresHoras = 3 * 60 * 60 * 1000;
+
+    if (ahora - ultimaApertura >= tresHoras) {
+        // Abrirlo directamente desde el clic del usuario
+        const ventana = window.open(
+            "https://www.profitableratecpmnetwork.com/w9uhrhj1?key=48f699d1ce8fdb028c5da863cb56ff61",
+            "_blank"
+        );
+
+        // Registrar el tiempo solo si el navegador permitió abrirlo
+        if (ventana) {
+            localStorage.setItem(
+                "ultimaAperturaSmartLink",
+                String(ahora)
+            );
+        }
     }
-);
+});
+
 
 // ==========================================
 // VOLVER AL PANEL DESDE GANADORES
