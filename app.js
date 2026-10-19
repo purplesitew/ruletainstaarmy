@@ -1519,12 +1519,11 @@ document.addEventListener(
 
 
 // ==========================================
-// MOSTRAR RESULTADO
+// MOSTRAR RESULTADO Y BOTÓN DE ANUNCIO
 // ==========================================
 
 const modalResultado =
     document.getElementById("modalResultado");
-
 
 const resultadoImagen =
     document.getElementById("resultadoImagen");
@@ -1532,15 +1531,127 @@ const resultadoImagen =
 const cerrarResultado =
     document.getElementById("cerrarResultado");
 
+// Enlace del anuncio
+const SMARTLINK_ANUNCIO =
+    "https://www.profitableratecpmnetwork.com/w9uhrhj1?key=48f699d1ce8fdb028c5da863cb56ff61";
 
+// Crear el botón usando tu imagen PNG
+const btnAnuncio = document.createElement("button");
+
+btnAnuncio.type = "button";
+btnAnuncio.id = "btnAnuncio";
+btnAnuncio.setAttribute(
+    "aria-label",
+    "Ver anuncio para volver a girar"
+);
+
+btnAnuncio.style.cssText = `
+    display: block;
+    width: 85%;
+    max-width: 320px;
+    padding: 0;
+    margin: 18px auto 10px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+`;
+
+const imagenAnuncio = document.createElement("img");
+
+imagenAnuncio.src = "btnanun.png";
+imagenAnuncio.alt = "Ver anuncio y volver a participar";
+imagenAnuncio.style.cssText = `
+    display: block;
+    width: 100%;
+    height: auto;
+`;
+
+btnAnuncio.appendChild(imagenAnuncio);
+
+// Colocar el botón debajo de la imagen del premio
+resultadoImagen.insertAdjacentElement(
+    "afterend",
+    btnAnuncio
+);
+
+// Mostrar el premio correspondiente
 function mostrarResultado(nombre, premio, indicePremio) {
 
     resultadoImagen.src =
         `premio${indicePremio + 1}.png`;
 
     modalResultado.style.display = "flex";
-
 }
+
+// ==========================================
+// BOTÓN DE ANUNCIO: PERMITIR OTRO GIRO
+// ==========================================
+
+btnAnuncio.addEventListener("click", async () => {
+
+    if (!participanteId) {
+        alert("No se encontró tu registro. Vuelve a registrarte.");
+        return;
+    }
+
+    // Abrir el Smartlink directamente desde el clic
+    window.open(
+        SMARTLINK_ANUNCIO,
+        "_blank",
+        "noopener,noreferrer"
+    );
+
+    btnAnuncio.disabled = true;
+
+    try {
+
+        const participanteRef = doc(
+            db,
+            "participantes",
+            participanteId
+        );
+
+        // Habilitar una nueva oportunidad en esta partida
+        await updateDoc(participanteRef, {
+            yaJugo: false
+        });
+
+        // Cerrar el resultado anterior
+        modalResultado.style.display = "none";
+
+        // Permitir que el participante vuelva a girar
+        btnGirar.disabled = false;
+        btnGirar.style.pointerEvents = "auto";
+
+        btnGirar.setAttribute(
+            "aria-disabled",
+            "false"
+        );
+
+        console.log(
+            "Nueva oportunidad habilitada para:",
+            participanteId
+        );
+
+    } catch (error) {
+
+        console.error(
+            "Error al habilitar otro giro:",
+            error
+        );
+
+        alert(
+            "No se pudo habilitar otro giro. " +
+            "Comprueba tu conexión e inténtalo de nuevo."
+        );
+
+    } finally {
+
+        btnAnuncio.disabled = false;
+
+    }
+
+});
 
 
 
