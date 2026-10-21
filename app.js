@@ -1520,13 +1520,54 @@ function mostrarResultado(nombre, premio, indicePremio) {
 
 
 
-// ==========================================
-// CERRAR RESULTADO
-// ==========================================
+
+/* ==========================================
+   BOTÓN COBRAR: SMARTLINK Y WHATSAPP
+   ========================================== */
+
+const enlaceSmartlink =
+    "https://arwf.org/4/48f699d1ce8fdb028c5da863cb56ff61";
+
+const enlaceWhatsAppBusiness =
+    "https://wa.me/message/RBTXILF7PAV4N1";
+
+// Recordar el paso actual mientras la página siga abierta.
+let anuncioAbierto = false;
 
 cerrarResultado.addEventListener("click", () => {
 
-    modalResultado.style.display = "none";
+    // PRIMER TOQUE: abrir el Smartlink.
+    if (!anuncioAbierto) {
+
+        const ventanaAnuncio = window.open(
+            enlaceSmartlink,
+            "_blank"
+        );
+
+        // Si el navegador bloquea la ventana,
+        // permitir que lo intente nuevamente.
+        if (!ventanaAnuncio) {
+            alert(
+                "No se pudo abrir el anuncio. " +
+                "Permite las ventanas emergentes e inténtalo de nuevo."
+            );
+            return;
+        }
+
+        anuncioAbierto = true;
+
+        console.log(
+            "Smartlink abierto. El siguiente toque abrirá WhatsApp."
+        );
+
+        return;
+    }
+
+    // SEGUNDO TOQUE: abrir WhatsApp Business.
+    window.open(
+        enlaceWhatsAppBusiness,
+        "_blank"
+    );
 
 });
 // ==========================================
