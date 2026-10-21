@@ -86,9 +86,12 @@ const modalInstrucciones =
 
 const cerrarInstrucciones =
     
+
 cerrarInstrucciones.addEventListener("click", () => {
-    // Cerrar las instrucciones sin abrir anuncios
+
+    // Cerrar las instrucciones sin abrir anuncios.
     modalInstrucciones.style.display = "none";
+
 });
 
 // ==========================================
