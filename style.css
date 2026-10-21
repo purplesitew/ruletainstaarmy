@@ -1489,3 +1489,17 @@ body {
 
     overflow: hidden;
 }
+#cerrarResultado {
+    width: 180px;
+    max-width: 70vw;
+    height: auto;
+    display: block;
+    margin: 10px auto;
+}
+
+#cerrarResultado img {
+    width: 100%;
+    max-width: 180px;
+    height: auto;
+    display: block;
+}
