@@ -1769,7 +1769,7 @@ console.log(
 const premios = [
     {
         nombre: "RM",
-        premio: "Navidad"
+        premio: "Halloween"
     },
     {
         nombre: "Jin",
