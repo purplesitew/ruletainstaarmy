@@ -1665,9 +1665,36 @@ function codigoValido(codigo) {
 
 btnGirar.addEventListener("click", async () => {
 
+    // ==========================================
+    // PASO 1: ABRIR SMARTLINK
+    // ==========================================
+
+    if (sessionStorage.getItem("smartlinkAbierto") !== "true") {
+
+        const ventanaAnuncio = window.open(
+            "https://arwf.org/4/48f699d1ce8fdb028c5da863cb56ff61",
+            "_blank"
+        );
+
+        if (!ventanaAnuncio) {
+            alert(
+                "No se pudo abrir el anuncio. " +
+                "Permite las ventanas emergentes e inténtalo de nuevo."
+            );
+            return;
+        }
+
+        sessionStorage.setItem("smartlinkAbierto", "true");
+
+        return;
+    }
+
+    // ==========================================
+    // PASO 2: MOSTRAR REGISTRO SI FALTA
+    // ==========================================
+
     const registrado =
         btnGirar.dataset.registrado === "true";
-
 
     if (!registrado) {
 
@@ -1675,7 +1702,6 @@ btnGirar.addEventListener("click", async () => {
 
         return;
     }
-
 
 
 // Detener audio de inicio
