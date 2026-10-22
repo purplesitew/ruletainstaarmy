@@ -1799,19 +1799,16 @@ const premios = [
 
 
 // ==========================================
-// ELEGIR PREMIO
+// ELEGIR PREMIO (SOLO RM Y JIN)
 // ==========================================
 
-// Todos los premios están disponibles,
-// incluido Jimin.
+const premiosPrueba = premios.slice(0, 2);
 
 const premioGanador =
-    Math.floor(
-        Math.random() * premios.length
-    );
+    Math.floor(Math.random() * premiosPrueba.length);
 
 const premioSeleccionado =
-    premios[premioGanador];
+    premiosPrueba[premioGanador];
 
 const nombrePremio =
     premioSeleccionado.nombre;
