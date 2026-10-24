@@ -1,8 +1,10 @@
-// ==========================================
+
+/ ==========================================
 // SERVICE WORKER - RULETA PWA
+// Actualización automática de archivos
 // ==========================================
 
-const CACHE_NAME = "ruleta-pwa-v37";
+const CACHE_NAME = "ruleta-pwa-v38";
 
 const ARCHIVOS = [
     "./",
@@ -40,120 +42,154 @@ const ARCHIVOS = [
     "./inicioaudio.mp3"
 ];
 
-
 // ==========================================
-// INSTALAR SERVICE WORKER
+// INSTALAR NUEVA VERSIÓN
 // ==========================================
 
 self.addEventListener("install", (event) => {
-
-    console.log(
-        "Service Worker instalando..."
-    );
-
     event.waitUntil(
-
         caches.open(CACHE_NAME)
-            .then((cache) => {
+            .then(async (cache) => {
+                // Guarda los archivos disponibles.
+                // Un recurso faltante no debe impedir
+                // instalar la nueva versión.
+                await Promise.all(
+                    ARCHIVOS.map(async (archivo) => {
+                        try {
+                            const respuesta = await fetch(archivo, {
+                                cache: "reload"
+                            });
 
-                console.log(
-                    "Guardando archivos en caché..."
+                            if (respuesta.ok) {
+                                await cache.put(archivo, respuesta);
+                            } else {
+                                console.warn(
+                                    "No se pudo actualizar:",
+                                    archivo,
+                                    respuesta.status
+                                );
+                            }
+                        } catch (error) {
+                            console.warn(
+                                "Error al guardar:",
+                                archivo,
+                                error
+                            );
+                        }
+                    })
                 );
-
-                return cache.addAll(ARCHIVOS);
-
             })
-            .then(() => {
-
-                console.log(
-                    "Nueva versión de la PWA preparada."
-                );
-
-                // Activa inmediatamente la nueva versión
-                return self.skipWaiting();
-
-            })
-
+            .then(() => self.skipWaiting())
     );
-
 });
 
-
 // ==========================================
-// ACTIVAR NUEVA VERSIÓN
+// ACTIVAR Y ELIMINAR CACHÉS ANTIGUAS
 // ==========================================
 
 self.addEventListener("activate", (event) => {
-
-    console.log(
-        "Service Worker activado."
-    );
-
     event.waitUntil(
-
         caches.keys()
             .then((nombresCache) => {
-
                 return Promise.all(
-
                     nombresCache
-                        .filter((nombreCache) => {
-
-                            return (
-                                nombreCache !== CACHE_NAME
-                            );
-
-                        })
-                        .map((nombreCache) => {
-
-                            console.log(
-                                "Eliminando caché antigua:",
-                                nombreCache
-                            );
-
-                            return caches.delete(
-                                nombreCache
-                            );
-
-                        })
-
+                        .filter((nombre) =>
+                            nombre.startsWith("ruleta-pwa-") &&
+                            nombre !== CACHE_NAME
+                        )
+                        .map((nombre) => caches.delete(nombre))
                 );
-
             })
-            .then(() => {
-
-                // Hace que las páginas abiertas
-                // usen inmediatamente el nuevo SW
-                return self.clients.claim();
-
-            })
-
+            .then(() => self.clients.claim())
     );
-
 });
-
 
 // ==========================================
 // INTERCEPTAR PETICIONES
 // ==========================================
 
 self.addEventListener("fetch", (event) => {
+    const request = event.request;
 
+    // Solo peticiones GET
+    if (request.method !== "GET") {
+        return;
+    }
+
+    const url = new URL(request.url);
+
+    // No interceptar otros dominios
+    if (url.origin !== self.location.origin) {
+        return;
+    }
+
+    // HTML, CSS, JS y JSON:
+    // servidor primero para obtener cambios recientes.
+    const esArchivoActualizable =
+        request.mode === "navigate" ||
+        /\.(html|css|js|json)$/i.test(url.pathname);
+
+    if (esArchivoActualizable) {
+        event.respondWith(
+            fetch(request, { cache: "no-cache" })
+                .then(async (respuesta) => {
+                    if (respuesta.ok) {
+                        const copia = respuesta.clone();
+
+                        try {
+                            const cache = await caches.open(CACHE_NAME);
+                            await cache.put(request, copia);
+                        } catch (error) {
+                            console.warn(
+                                "No se pudo actualizar la caché:",
+                                error
+                            );
+                        }
+                    }
+
+                    return respuesta;
+                })
+                .catch(async () => {
+                    // Si no hay internet, usar la caché.
+                    const cache = await caches.open(CACHE_NAME);
+
+                    return (
+                        await cache.match(request) ||
+                        await cache.match("./index.html") ||
+                        Response.error()
+                    );
+                })
+        );
+
+        return;
+    }
+
+    // Imágenes y audio:
+    // caché primero para una carga más rápida.
     event.respondWith(
-
-        caches.match(event.request)
+        caches.match(request)
             .then((respuestaCache) => {
-
                 if (respuestaCache) {
-
                     return respuestaCache;
-
                 }
 
-                return fetch(event.request);
+                return fetch(request).then(async (respuesta) => {
+                    if (respuesta.ok) {
+                        const copia = respuesta.clone();
 
+                        try {
+                            const cache = await caches.open(CACHE_NAME);
+                            await cache.put(request, copia);
+                        } catch (error) {
+                            console.warn(
+                                "No se pudo guardar el recurso:",
+                                error
+                            );
+                        }
+                    }
+
+                    return respuesta;
+                });
             })
-
     );
-
 });
