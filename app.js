@@ -1815,10 +1815,10 @@ const premios = [
 
 
 // ==========================================
-// ELEGIR PREMIO (SOLO RM Y JIN)
+// ELEGIR PREMIO ENTRE LOS 7 BTS
 // ==========================================
 
-const premiosPrueba = premios.slice(0, 2);
+const premiosPrueba = premios;
 
 const premioGanador =
     Math.floor(Math.random() * premiosPrueba.length);
