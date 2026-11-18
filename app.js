@@ -1516,7 +1516,27 @@ const cerrarResultado =
 // MOSTRAR IMAGEN DEL PREMIO GANADOR
 // ==========================================
 
+
 function mostrarResultado(nombre, premio, indicePremio) {
+
+    const imagenesPremios = [
+        "diploma.jpeg",
+        "bank.jpeg",
+        "platinumbank.jpeg",
+        "certificado.jpeg",
+        "tarjetabienestar.jpeg",
+        "calendariojk.jpeg",
+        "calendariojimin.jpeg"
+    ];
+
+    resultadoImagen.src = imagenesPremios[indicePremio];
+
+    resultadoImagen.alt = premio;
+
+    modalResultado.style.display = "flex";
+
+}
+
 
     const premioSeleccionado = premios[indicePremio];
 
@@ -1771,14 +1791,7 @@ console.log(
 );
 
 
-// ==========================================
-// PREMIOS DE LA RULETA
-// ==========================================
 
-
-// ==========================================
-// PREMIOS DE LA RULETA
-// ==========================================
 
 const premios = [
     {
@@ -1808,15 +1821,16 @@ const premios = [
     },
     {
         nombre: "Jungkook",
-        premio: "Calca bancarias",
-        imagen: "premio6.png"
+        premio: "CALENDARIO DE JUNGKOOK",
+        imagen: "calendariojk.jpeg"
     },
     {
         nombre: "V",
-        premio: "Etiqueta Cola",
-        imagen: "premio7.png"
+        premio: "CALENDARIO DE JIMIN",
+        imagen: "calendariojimin.jpeg"
     }
 ];
+
 
 
 // ==========================================
