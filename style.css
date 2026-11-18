@@ -1556,3 +1556,40 @@ body {
     transition: opacity 0.5s ease,
                 visibility 0.5s ease;
 }
+/* ==========================================
+   ANUNCIO SOBRE LA IMAGEN DE INICIO
+   ========================================== */
+
+#anuncioInicioRuleta {
+    position: absolute;
+
+    top: 20px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 468px;
+    height: 60px;
+
+    z-index: 10;
+
+    overflow: hidden;
+}
+
+/* ADAPTACIÓN PARA CELULARES */
+
+@media (max-width: 500px) {
+
+    #anuncioInicioRuleta {
+        top: 20px;
+
+        width: 468px;
+        height: 60px;
+
+        left: 50%;
+
+        transform: translateX(-50%) scale(0.7);
+        transform-origin: center top;
+    }
+
+}
