@@ -4,7 +4,7 @@
 // Actualización automática de archivos
 // ==========================================
 
-const CACHE_NAME = "ruleta-pwa-v40";
+const CACHE_NAME = "ruleta-pwa-v41";
 
 const ARCHIVOS = [
     "./",
@@ -31,14 +31,16 @@ const ARCHIVOS = [
     "./boton7.png",
 
    
+
 // Premios
 "./diploma.jpeg",
 "./bank.jpeg",
 "./platinumbank.jpeg",
 "./certificado.jpeg",
 "./tarjetabienestar.jpeg",
-"./premio6.png",
-"./premio7.png",
+"./calendariojk.jpeg",
+"./calendariojimin.jpeg",
+
 
 
     // Audio
