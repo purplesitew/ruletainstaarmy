@@ -30,14 +30,16 @@ const ARCHIVOS = [
     "./boton6.png",
     "./boton7.png",
 
-    // Premios
-    "./premio1.png",
-    "./premio2.png",
-    "./premio3.png",
-    "./premio4.png",
-    "./premio5.png",
-    "./premio6.png",
-    "./premio7.png",
+   
+// Premios
+"./diploma.jpeg",
+"./bank.jpeg",
+"./platinumbank.jpeg",
+"./certificado.jpeg",
+"./tarjetabienestar.jpeg",
+"./premio6.png",
+"./premio7.png",
+
 
     // Audio
     "./inicioaudio.mp3"
