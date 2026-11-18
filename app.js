@@ -1496,13 +1496,13 @@ document.addEventListener(
 );
 
 
-// ==========================================
+
+ // ==========================================
 // MOSTRAR RESULTADO
 // ==========================================
 
 const modalResultado =
     document.getElementById("modalResultado");
-
 
 const resultadoImagen =
     document.getElementById("resultadoImagen");
@@ -1511,11 +1511,9 @@ const cerrarResultado =
     document.getElementById("cerrarResultado");
 
 
-
 // ==========================================
 // MOSTRAR IMAGEN DEL PREMIO GANADOR
 // ==========================================
-
 
 function mostrarResultado(nombre, premio, indicePremio) {
 
@@ -1536,23 +1534,6 @@ function mostrarResultado(nombre, premio, indicePremio) {
     modalResultado.style.display = "flex";
 
 }
-
-
-    const premioSeleccionado = premios[indicePremio];
-
-    resultadoImagen.src = premioSeleccionado.imagen;
-
-    resultadoImagen.alt = premioSeleccionado.premio;
-
-    modalResultado.style.display = "flex";
-
-}
-
-
-
-
-
-
 
 /* ==========================================
    BOTÓN COBRAR: SMARTLINK Y WHATSAPP
