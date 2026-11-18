@@ -4,7 +4,7 @@
 // Actualización automática de archivos
 // ==========================================
 
-const CACHE_NAME = "ruleta-pwa-v38";
+const CACHE_NAME = "ruleta-pwa-v39";
 
 const ARCHIVOS = [
     "./",
@@ -14,11 +14,12 @@ const ARCHIVOS = [
     "./manifest.json",
 
     // Imágenes principales
-    "./fondo.jpg",
-    "./ruleta.png",
-    "./flecharuleta.png",
-    "./panel.png",
-    "./instalar.png",
+"./fondo.jpg",
+"./iniciorul.jpg",
+"./ruleta.png",
+"./flecharuleta.png",
+"./panel.png",
+"./instalar.png",
 
     // Botones
     "./boton1.png",
