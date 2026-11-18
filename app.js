@@ -1511,14 +1511,23 @@ const cerrarResultado =
     document.getElementById("cerrarResultado");
 
 
+
+// ==========================================
+// MOSTRAR IMAGEN DEL PREMIO GANADOR
+// ==========================================
+
 function mostrarResultado(nombre, premio, indicePremio) {
 
-    resultadoImagen.src =
-        `premio${indicePremio + 1}.png`;
+    const premioSeleccionado = premios[indicePremio];
+
+    resultadoImagen.src = premioSeleccionado.imagen;
+
+    resultadoImagen.alt = premioSeleccionado.premio;
 
     modalResultado.style.display = "flex";
 
 }
+
 
 
 
@@ -1766,34 +1775,46 @@ console.log(
 // PREMIOS DE LA RULETA
 // ==========================================
 
+
+// ==========================================
+// PREMIOS DE LA RULETA
+// ==========================================
+
 const premios = [
     {
         nombre: "RM",
-        premio: "Halloween"
+        premio: "DIPLOMA",
+        imagen: "diploma.jpeg"
     },
     {
         nombre: "Jin",
-        premio: "Día de muertos"
+        premio: "TARJETA BANCARIA",
+        imagen: "bank.jpeg"
     },
     {
         nombre: "Suga",
-        premio: "Diploma"
+        premio: "TARJETA BANCARIA PLATINUM",
+        imagen: "platinumbank.jpeg"
     },
     {
         nombre: "J-Hope",
-        premio: "Acta de bautismo"
+        premio: "ACTA DE BAUTISMO",
+        imagen: "certificado.jpeg"
     },
     {
         nombre: "Jimin",
-        premio: "Insta pasaporte Army"
+        premio: "TARJETA DEL BIENESTAR",
+        imagen: "tarjetabienestar.jpeg"
     },
     {
         nombre: "Jungkook",
-        premio: "Calca bancarias"
+        premio: "Calca bancarias",
+        imagen: "premio6.png"
     },
     {
         nombre: "V",
-        premio: "Etiqueta Cola"
+        premio: "Etiqueta Cola",
+        imagen: "premio7.png"
     }
 ];
 
