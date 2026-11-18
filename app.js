@@ -2298,3 +2298,25 @@ window.addEventListener(
 
     }
 );
+
+// ==========================================
+// PANTALLA DE INICIO - RULETA
+// DURACIÓN: 5 SEGUNDOS
+// ==========================================
+
+const pantallaInicioRuleta =
+    document.getElementById("pantallaInicioRuleta");
+
+if (pantallaInicioRuleta) {
+
+    setTimeout(() => {
+
+        pantallaInicioRuleta.classList.add("ocultar");
+
+        setTimeout(() => {
+            pantallaInicioRuleta.remove();
+        }, 500);
+
+    }, 5000);
+
+}
