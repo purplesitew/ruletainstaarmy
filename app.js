@@ -2346,18 +2346,50 @@ if (pantallaInicioRuleta) {
 
             pantallaInicioRuleta.remove();
 
-            // Reproducir audio de instrucciones.
-            if (audioInstrucciones &&
-                modalInstrucciones.style.display !== "none") {
+            
+if (
+    audioInstrucciones &&
+    modalInstrucciones.style.display !== "none"
+) {
 
-                audioInstrucciones.currentTime = 0;
+    audioInstrucciones.currentTime = 0;
+    audioInstrucciones.volume = 1;
 
-                audioInstrucciones.play().catch(() => {
-                    console.log(
-                        "El navegador bloqueó el audio automático de instrucciones."
-                    );
-                });
+    // Intentar reproducir automáticamente.
+    audioInstrucciones.play().catch(() => {
+
+        console.log(
+            "El navegador requiere interacción para reproducir el audio."
+        );
+
+        // Reproducir cuando el usuario toque las instrucciones.
+        const reproducirAlTocar = () => {
+
+            if (modalInstrucciones.style.display === "none") {
+                return;
             }
+
+            audioInstrucciones.play().catch((error) => {
+                console.error(
+                    "No se pudo reproducir el audio de instrucciones:",
+                    error
+                );
+            });
+
+            modalInstrucciones.removeEventListener(
+                "pointerdown",
+                reproducirAlTocar
+            );
+        };
+
+        modalInstrucciones.addEventListener(
+            "pointerdown",
+            reproducirAlTocar
+        );
+
+    });
+}
+
 
         }, 500);
 
