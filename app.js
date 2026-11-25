@@ -2338,16 +2338,19 @@ window.addEventListener(
 
 
 
-// ==========================================
-// PANTALLA DE INICIO - RULETA
-// DURACIÓN: 5 SEGUNDOS
-// ==========================================
+ // ==========================================
+ // PANTALLA DE INICIO - RULETA
+ // DURACIÓN: 5 SEGUNDOS
+ // ==========================================
 
 const pantallaInicioRuleta =
     document.getElementById("pantallaInicioRuleta");
 
-// Reintentar audio cuando el usuario interactúe,
-// sin mostrar botones adicionales.
+// ==========================================
+// REINTENTAR AUDIO DE INSTRUCCIONES
+// SIN AFECTAR LA MÚSICA DE INICIO
+// ==========================================
+
 function activarAudioInstrucciones() {
 
     if (
@@ -2358,41 +2361,47 @@ function activarAudioInstrucciones() {
         return;
     }
 
-    audioInicio.pause();
-
     audioInstrucciones.volume = 1;
 
     audioInstrucciones.play()
         .then(() => {
+
             document.removeEventListener(
                 "pointerdown",
                 activarAudioInstrucciones
             );
+
         })
         .catch((error) => {
+
             console.log(
                 "Audio pendiente de interacción:",
                 error.name
             );
+
         });
 }
+
+// ==========================================
+// OCULTAR BIENVENIDA Y REPRODUCIR AUDIO
+// ==========================================
 
 if (pantallaInicioRuleta) {
 
     setTimeout(() => {
 
+        // Ocultar imagen de bienvenida.
         pantallaInicioRuleta.classList.add("ocultar");
 
         setTimeout(() => {
 
             pantallaInicioRuleta.remove();
 
+            // Reproducir audio de instrucciones.
             if (
                 audioInstrucciones &&
                 modalInstrucciones.style.display !== "none"
             ) {
-
-                audioInicio.pause();
 
                 audioInstrucciones.currentTime = 0;
                 audioInstrucciones.volume = 1;
@@ -2400,7 +2409,8 @@ if (pantallaInicioRuleta) {
                 audioInstrucciones.play()
                     .catch(() => {
 
-                        // El navegador requiere interacción.
+                        // Si el navegador bloquea el audio,
+                        // reintentar cuando el usuario toque la pantalla.
                         document.addEventListener(
                             "pointerdown",
                             activarAudioInstrucciones
@@ -2413,5 +2423,4 @@ if (pantallaInicioRuleta) {
 
     }, 5000);
 }
-
 
