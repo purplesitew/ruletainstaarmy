@@ -82,48 +82,33 @@ const btnVolverDesdePremios =
 
 
 
+
 const modalInstrucciones =
     document.getElementById("modalInstrucciones");
 
 const cerrarInstrucciones =
     document.getElementById("cerrarInstrucciones");
 
-
 const audioInstrucciones =
     document.getElementById("audioInstrucciones");
 
-const btnAudioInstrucciones =
-    document.getElementById("btnAudioInstrucciones");
-
-if (btnAudioInstrucciones && audioInstrucciones) {
-
-    btnAudioInstrucciones.addEventListener("click", () => {
-
-        // Evitar que se mezcle con la música de inicio.
-        audioInicio.pause();
-
-        // Reiniciar y reproducir las instrucciones.
-        audioInstrucciones.pause();
-        audioInstrucciones.currentTime = 0;
-        audioInstrucciones.volume = 1;
-
-        audioInstrucciones.play().catch((error) => {
-            console.error("Error al reproducir instrucciones:", error);
-            alert("No se pudo reproducir el audio.");
-        });
-
-    });
-
-}
-
+// ==========================================
+// CERRAR INSTRUCCIONES Y DETENER AUDIO
+// ==========================================
 
 cerrarInstrucciones.addEventListener("click", () => {
 
-    // Detener audio al cerrar las instrucciones.
+    // Detener el audio de instrucciones.
     if (audioInstrucciones) {
         audioInstrucciones.pause();
         audioInstrucciones.currentTime = 0;
     }
+
+    // Cancelar reproducción pendiente.
+    document.removeEventListener(
+        "pointerdown",
+        activarAudioInstrucciones
+    );
 
     // Cerrar las instrucciones.
     modalInstrucciones.style.display = "none";
