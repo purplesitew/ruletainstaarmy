@@ -2352,6 +2352,7 @@ window.addEventListener(
 );
 
 
+
 // ==========================================
 // PANTALLA DE INICIO - RULETA
 // DURACIÓN: 5 SEGUNDOS
@@ -2360,65 +2361,72 @@ window.addEventListener(
 const pantallaInicioRuleta =
     document.getElementById("pantallaInicioRuleta");
 
+// Reintentar audio cuando el usuario interactúe,
+// sin mostrar botones adicionales.
+function activarAudioInstrucciones() {
+
+    if (
+        !audioInstrucciones ||
+        modalInstrucciones.style.display === "none" ||
+        pantallaInicioRuleta?.isConnected
+    ) {
+        return;
+    }
+
+    audioInicio.pause();
+
+    audioInstrucciones.volume = 1;
+
+    audioInstrucciones.play()
+        .then(() => {
+            document.removeEventListener(
+                "pointerdown",
+                activarAudioInstrucciones
+            );
+        })
+        .catch((error) => {
+            console.log(
+                "Audio pendiente de interacción:",
+                error.name
+            );
+        });
+}
+
 if (pantallaInicioRuleta) {
 
     setTimeout(() => {
 
-        // Ocultar la imagen de bienvenida.
         pantallaInicioRuleta.classList.add("ocultar");
 
         setTimeout(() => {
 
             pantallaInicioRuleta.remove();
 
-            
-if (
-    audioInstrucciones &&
-    modalInstrucciones.style.display !== "none"
-) {
+            if (
+                audioInstrucciones &&
+                modalInstrucciones.style.display !== "none"
+            ) {
 
-    audioInstrucciones.currentTime = 0;
-    audioInstrucciones.volume = 1;
+                audioInicio.pause();
 
-    // Intentar reproducir automáticamente.
-    audioInstrucciones.play().catch(() => {
+                audioInstrucciones.currentTime = 0;
+                audioInstrucciones.volume = 1;
 
-        console.log(
-            "El navegador requiere interacción para reproducir el audio."
-        );
+                audioInstrucciones.play()
+                    .catch(() => {
 
-        // Reproducir cuando el usuario toque las instrucciones.
-        const reproducirAlTocar = () => {
+                        // El navegador requiere interacción.
+                        document.addEventListener(
+                            "pointerdown",
+                            activarAudioInstrucciones
+                        );
 
-            if (modalInstrucciones.style.display === "none") {
-                return;
+                    });
             }
-
-            audioInstrucciones.play().catch((error) => {
-                console.error(
-                    "No se pudo reproducir el audio de instrucciones:",
-                    error
-                );
-            });
-
-            modalInstrucciones.removeEventListener(
-                "pointerdown",
-                reproducirAlTocar
-            );
-        };
-
-        modalInstrucciones.addEventListener(
-            "pointerdown",
-            reproducirAlTocar
-        );
-
-    });
-}
-
 
         }, 500);
 
     }, 5000);
-
 }
+
 
