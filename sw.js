@@ -4,7 +4,7 @@
 // Actualización automática de archivos
 // ==========================================
 
-const CACHE_NAME = "ruleta-pwa-v44";
+const CACHE_NAME = "ruleta-pwa-v45";
 
 const ARCHIVOS = [
     "./",
