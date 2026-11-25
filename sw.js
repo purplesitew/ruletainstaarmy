@@ -4,7 +4,7 @@
 // Actualización automática de archivos
 // ==========================================
 
-const CACHE_NAME = "ruleta-pwa-v43";
+const CACHE_NAME = "ruleta-pwa-v44";
 
 const ARCHIVOS = [
     "./",
@@ -43,8 +43,15 @@ const ARCHIVOS = [
 
 
 
-    // Audio
-    "./inicioaudio.mp3"
+  // ==========================================
+// AUDIOS DE LA RULETA
+// ==========================================
+
+"./inicioaudio.mp3",
+"./sonidoruleta.mp3",
+"./festejo.mp3",
+"./instruccionesAud.mp3"
+
 ];
 
 // ==========================================
