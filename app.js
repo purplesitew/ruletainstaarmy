@@ -88,12 +88,23 @@ const modalInstrucciones =
 const cerrarInstrucciones =
     document.getElementById("cerrarInstrucciones");
 
+
+const audioInstrucciones =
+    document.getElementById("audioInstrucciones");
+
 cerrarInstrucciones.addEventListener("click", () => {
 
-    // Cerrar las instrucciones sin abrir anuncios.
+    // Detener audio al cerrar las instrucciones.
+    if (audioInstrucciones) {
+        audioInstrucciones.pause();
+        audioInstrucciones.currentTime = 0;
+    }
+
+    // Cerrar las instrucciones.
     modalInstrucciones.style.display = "none";
 
 });
+
 
 // ==========================================
 // VOLVER AL PANEL DESDE GANADORES
@@ -2315,6 +2326,7 @@ window.addEventListener(
     }
 );
 
+
 // ==========================================
 // PANTALLA DE INICIO - RULETA
 // DURACIÓN: 5 SEGUNDOS
@@ -2327,12 +2339,29 @@ if (pantallaInicioRuleta) {
 
     setTimeout(() => {
 
+        // Ocultar la imagen de bienvenida.
         pantallaInicioRuleta.classList.add("ocultar");
 
         setTimeout(() => {
+
             pantallaInicioRuleta.remove();
+
+            // Reproducir audio de instrucciones.
+            if (audioInstrucciones &&
+                modalInstrucciones.style.display !== "none") {
+
+                audioInstrucciones.currentTime = 0;
+
+                audioInstrucciones.play().catch(() => {
+                    console.log(
+                        "El navegador bloqueó el audio automático de instrucciones."
+                    );
+                });
+            }
+
         }, 500);
 
     }, 5000);
 
 }
+
