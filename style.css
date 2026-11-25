@@ -1621,3 +1621,24 @@ body {
 
     overflow: hidden;
 }
+/* ==========================================
+   BOTÓN AUDIO DE INSTRUCCIONES
+========================================== */
+
+.btn-audio-instrucciones {
+    display: block;
+    width: min(90%, 320px);
+    padding: 12px 15px;
+
+    background: #6a0dad;
+    color: #ffffff;
+
+    border: 2px solid #c58aff;
+    border-radius: 15px;
+
+    font-size: 15px;
+    font-weight: bold;
+
+    cursor: pointer;
+    flex-shrink: 0;
+}
